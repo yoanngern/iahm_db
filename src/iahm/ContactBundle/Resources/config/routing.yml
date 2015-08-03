@@ -1,0 +1,27 @@
+iahm_contact_homepage:
+    path:     /
+    defaults: { _controller: iahmContactBundle:App:home }
+
+iahm_solr_indexAll:
+    path:     /index
+    defaults: { _controller: iahmContactBundle:Solr:indexAll }
+
+iahm_solr_indexContacts:
+    path:     /index/contacts
+    defaults: { _controller: iahmContactBundle:Solr:indexContacts }
+
+iahm_solr_indexEntities:
+    path:     /index/entities
+    defaults: { _controller: iahmContactBundle:Solr:indexEntities }
+
+iahm_solr_indexGroups:
+    path:     /index/groups
+    defaults: { _controller: iahmContactBundle:Solr:indexGroups }
+
+iahm_solr_indexEvents:
+    path:     /index/events
+    defaults: { _controller: iahmContactBundle:Solr:indexEvents }
+
+iahm_solr_indexDelete:
+    path:     /index/delete
+    defaults: { _controller: iahmContactBundle:Solr:indexDelete }

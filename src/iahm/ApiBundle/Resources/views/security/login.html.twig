@@ -1,0 +1,24 @@
+<div class="form">
+
+    <form action="{{ path('iahm_api_auth_login_check') }}"
+          method="post">
+        <div class="form_title">
+            OAuth Authorization
+        </div>
+        <div class="form_item">
+            <div class="form_label"><label for="username">Username</label>:</div>
+            <div class="form_widget"><input type="text" id="username" name="_username" /></div>
+        </div>
+        <div class="form_item">
+            <div class="form_label"><label for="password">Password</label>:</div>
+            <div class="form_widget"><input type="password" id="password" name="_password" /></div>
+        </div>
+        <div class="form_button">
+            <input type="submit" id="_submit" name="_submit" value="Log In" />
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        {{ error }}
+    </form>
+</div>

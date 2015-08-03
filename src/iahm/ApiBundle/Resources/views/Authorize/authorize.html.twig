@@ -1,0 +1,25 @@
+
+<div class="form">
+
+    <form action="{{ path('fos_oauth_server_authorize', {
+            'client_id': app.request.get('client_id'),
+            'response_type': app.request.get('response_type'),
+            'redirect_uri': app.request.get('redirect_uri'),
+            'state': app.request.get('state'),
+            'scope': app.request.get('scope')
+    }) }}"
+          method="post" {{ form_enctype(form) }}>
+
+
+
+
+        <div class="form_title">
+            Grant access to
+        </div>
+
+        {{ form_widget(form) }}
+        <div class="form_button">
+            <input type="submit" value="Authorize" />
+        </div>
+    </form>
+</div>

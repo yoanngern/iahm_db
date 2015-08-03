@@ -1,0 +1,39 @@
+contacts :
+    type: rest
+    resource:     "iahmContactBundle:ContactRest"
+    name_prefix:  api_
+
+entities :
+    type: rest
+    resource:     "iahmContactBundle:FamilyRest"
+    name_prefix:  api_
+
+donations :
+    type: rest
+    resource:     "iahmContactBundle:DonationRest"
+    name_prefix:  api_
+
+groups :
+    type: rest
+    resource:     "iahmContactBundle:UnitRest"
+    name_prefix:  api_
+
+events :
+    type: rest
+    resource:     "iahmContactBundle:EventRest"
+    name_prefix:  api_
+
+locations :
+    type: rest
+    resource:     "iahmContactBundle:LocationRest"
+    name_prefix:  api_
+
+search :
+    type: rest
+    resource:     "iahmContactBundle:SearchRest"
+    name_prefix:  api_
+
+profile :
+    type: rest
+    resource:     "iahmContactBundle:ProfileRest"
+    name_prefix:  api_

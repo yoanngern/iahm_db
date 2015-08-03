@@ -1,0 +1,71 @@
+#security:
+#
+#
+#    firewalls:
+#        oauth_token:
+#            pattern: ^/oauth/v2/token
+#            security: false
+#
+#        oauth_authorize:
+#            pattern: ^/oauth/v2/auth
+#            form_login:
+#                provider: fos_userbundle
+#                csrf_provider: security.csrf.token_manager
+#                check_path: /login_check
+#                login_path: /login
+#            logout:       true
+#            anonymous:  true
+#
+#
+#
+#
+#    access_control:
+#        - { path: ^/auth/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/, role: ROLE_USER }
+#
+#    role_hierarchy:
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+
+security:
+    encoders:
+        "FOS\UserBundle\Model\UserInterface": sha512
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+
+        doc:
+            pattern: ^/api/doc
+            anonymous: true
+
+
+        api_firewall:
+            pattern: ^/api/.*
+            fos_oauth: true
+            stateless: true
+            anonymous: false
+
+        secure_area:
+            pattern:    ^/
+            fos_oauth: true
+            form_login:
+                provider: fos_userbundle
+                check_path: /oauth/v2/auth_login_check
+                login_path: /oauth/v2/auth_login
+            logout:
+                path:   /logout
+                target: /
+            anonymous: ~
+
+    access_control:
+        - { path: ^/api/doc, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/oauth/v2/auth_login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
