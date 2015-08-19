@@ -44,7 +44,7 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start", type="datetime")
+     * @ORM\Column(name="start", type="datetime", nullable=true)
      * @Expose
      * @Groups({"EventDetails", "ContactEvents"})
      */
@@ -53,7 +53,7 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end", type="datetime")
+     * @ORM\Column(name="end", type="datetime", nullable=true)
      * @Expose
      * @Groups({"EventDetails", "ContactEvents"})
      */

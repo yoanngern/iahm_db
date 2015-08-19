@@ -302,9 +302,10 @@ class FamilyRestController extends Controller
 
             // set the `Location` header only when creating new resources
             if (201 === $statusCode) {
+
                 $response->headers->set('Location',
                     $this->generateUrl(
-                        'api_get_entity', array('entity_id' => $entity->getId(),
+                        'api_get_entity', array('entity' => $entity->getId(),
                         true // absolute
                     ))
                 );

@@ -53,7 +53,7 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      * @Expose
      * @Groups({"ContactDetails"})
      */
@@ -62,7 +62,7 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", length=255)
+     * @ORM\Column(name="gender", type="string", length=255, nullable=true)
      * @Expose
      * @Groups({"ContactDetails"})
      */
@@ -71,7 +71,7 @@ class Person
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateOfBirth", type="date")
+     * @ORM\Column(name="dateOfBirth", type="date", nullable=true)
      * @Expose
      * @Groups({"ContactDetails"})
      */

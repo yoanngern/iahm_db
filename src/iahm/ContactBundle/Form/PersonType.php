@@ -15,15 +15,26 @@ class PersonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('title')
-            ->add('gender')
+            ->add('firstname', 'text', array(
+                'required' => true,
+            ))
+            ->add('lastname', 'text', array(
+                'required' => true,
+            ))
+            ->add('title', 'text', array(
+                'required' => false,
+            ))
+            ->add('gender', 'text', array(
+                'required' => false,
+            ))
             ->add('dateOfBirth', 'date', array(
+                'required' => false,
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ))
-            ->add('languages')
+            ->add('languages', 'collection', array(
+                'required' => false,
+            ))
             ->add('events')
             ->add('phones', 'collection', array(
                 'required' => false,
@@ -39,8 +50,12 @@ class PersonType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ))
-            ->add('comment_txt')
-            ->add('type');
+            ->add('comment_txt', 'text', array(
+                'required' => false,
+            ))
+            ->add('type', 'text', array(
+                'required' => false,
+            ));
     }
 
     /**
