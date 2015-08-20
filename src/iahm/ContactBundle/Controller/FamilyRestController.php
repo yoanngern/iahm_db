@@ -589,7 +589,7 @@ class FamilyRestController extends Controller
                 if (201 === $statusCode) {
                     $response->headers->set('Location',
                         $this->generateUrl(
-                            'api_get_donation', array('donation_id' => $donation->getId(),
+                            'api_get_donation', array('donation' => $donation->getId(),
                             true // absolute
                         ))
                     );

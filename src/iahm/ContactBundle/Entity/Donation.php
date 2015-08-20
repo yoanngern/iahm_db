@@ -162,10 +162,12 @@ class Donation
         $doc->doc_id = "donation_" . $this->getId();
         $doc->doc_type = "donation";
 
-        if($this->getPerson() != null) {
-            $doc->doc_title = $this->getPerson()->getFirstname() ." ". $this->getPerson()->getFirstname() ." : ". $this->getAmount() . " " . $this->getCurrency();
+        if ($this->getPerson() != null) {
+            $doc->doc_title = $this->getPerson()->getFirstname() . " " . $this->getPerson()->getFirstname() . " : " . $this->getAmount() . " " . $this->getCurrency();
+        } else if ($this->getEntity() != null) {
+            $doc->doc_title = $this->getEntity()->getName() . " : " . $this->getAmount() . " " . $this->getCurrency();
         } else {
-            $doc->doc_title = $this->getAmount() ." ". $this->getCurrency();
+            $doc->doc_title = $this->getAmount() . " " . $this->getCurrency();
         }
 
         $doc->doc_description = $this->getDate()->format('d.m.Y');
