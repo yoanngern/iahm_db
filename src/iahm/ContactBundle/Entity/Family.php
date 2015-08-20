@@ -220,7 +220,7 @@ class Family
 
         $doc->type = $this->getType();
 
-        $doc->name = $this->getName();
+        $doc->title = $this->getName();
 
         $members = [];
         foreach ($this->getPersonsTypes() as $personType) {
