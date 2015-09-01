@@ -163,7 +163,7 @@ class EventRestController extends Controller
                 if (201 === $statusCode) {
                     $response->headers->set('Location',
                         $this->generateUrl(
-                            'api_get_event', array('event_id' => $event->getId(),
+                            'api_get_event', array('event' => $event->getId(),
                             true // absolute
                         ))
                     );
@@ -301,7 +301,7 @@ class EventRestController extends Controller
 
             $result = $this->addToSolr($event);
 
-            if($result->getStatus() != 0) {
+            if ($result->getStatus() != 0) {
                 $statusCode = 500;
             }
 
@@ -313,7 +313,7 @@ class EventRestController extends Controller
             if (201 === $statusCode) {
                 $response->headers->set('Location',
                     $this->generateUrl(
-                        'api_get_event', array('event_id' => $event->getId(),
+                        'api_get_event', array('event' => $event->getId(),
                         true // absolute
                     ))
                 );
@@ -340,16 +340,22 @@ class EventRestController extends Controller
 
         $documents[] = $event->toSolrDocument($update->createDocument());
 
-        foreach ($event->getPersons() as $contact) {
-            $documents[] = $contact->toSolrDocument($update->createDocument());
+        if (sizeof($event->getPersons())) {
+            foreach ($event->getPersons() as $contact) {
+                $documents[] = $contact->toSolrDocument($update->createDocument());
+            }
         }
 
-        foreach ($event->getGroups() as $group) {
-            $documents[] = $group->toSolrDocument($update->createDocument());
+        if (sizeof($event->getGroups())) {
+            foreach ($event->getGroups() as $group) {
+                $documents[] = $group->toSolrDocument($update->createDocument());
+            }
         }
 
-        foreach ($event->getChildrens() as $event) {
-            $documents[] = $event->toSolrDocument($update->createDocument());
+        if (sizeof($event->getChildrens())) {
+            foreach ($event->getChildrens() as $event) {
+                $documents[] = $event->toSolrDocument($update->createDocument());
+            }
         }
 
         if ($event->getParent() != null) {

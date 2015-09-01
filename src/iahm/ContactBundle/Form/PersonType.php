@@ -32,9 +32,7 @@ class PersonType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ))
-            ->add('languages', 'collection', array(
-                'required' => false,
-            ))
+            ->add('languages')
             ->add('events')
             ->add('phones', 'collection', array(
                 'required' => false,

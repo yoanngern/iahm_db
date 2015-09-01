@@ -202,7 +202,7 @@ class UnitRestController extends FOSRestController
             if (201 === $statusCode) {
                 $response->headers->set('Location',
                     $this->generateUrl(
-                        'api_get_group', array('group_id' => $group->getId(),
+                        'api_get_group', array('group' => $group->getId(),
                         true // absolute
                     ))
                 );

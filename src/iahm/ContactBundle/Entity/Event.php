@@ -115,7 +115,7 @@ class Event
      */
     public function getSimpleParent()
     {
-        if($this->getParent()) {
+        if ($this->getParent()) {
             $parent["id"] = trim($this->getParent()->getId());
             $parent["title"] = trim($this->getParent()->getTitle());
         } else {
@@ -177,7 +177,7 @@ class Event
         $doc->doc_id = "event_" . $this->getId();
         $doc->doc_type = "event";
         $doc->doc_title = $this->getTitle();
-        $doc->doc_description = $this->getStart()->format('d.m.Y') ." - ". $this->getEnd()->format('d.m.Y');
+        $doc->doc_description = $this->getStart()->format('d.m.Y') . " - " . $this->getEnd()->format('d.m.Y');
 
         $doc->entity_id = $this->getId();
         $doc->createdDate = $this->getCreatedDate();
@@ -188,29 +188,33 @@ class Event
         $doc->start = $this->getStart();
         $doc->end = $this->getEnd();
 
-        if($this->getParent() != null) {
+        if ($this->getParent() != null) {
             $doc->event_parent = $this->getParent()->getTitle();
         }
 
-        $participants = [];
-        foreach ($this->getPersons() as $contact) {
-            $participants[] = $contact->getFirstname() . " " . $contact->getLastname();
+        if (sizeof($this->getPersons())) {
+            $participants = [];
+            foreach ($this->getPersons() as $contact) {
+                $participants[] = $contact->getFirstname() . " " . $contact->getLastname();
+            }
+            $doc->participants = $participants;
         }
 
-        $event_groups = [];
-        foreach ($this->getGroups() as $group) {
-            $event_groups[] = $group->getTitle();
+        if (sizeof($this->getGroups())) {
+            $event_groups = [];
+            foreach ($this->getGroups() as $group) {
+                $event_groups[] = $group->getTitle();
+            }
+            $doc->event_groups = $event_groups;
         }
 
-        $event_childrens = [];
-        foreach ($this->getChildrens() as $event) {
-            $event_childrens[] = $event->getTitle();
+        if (sizeof($this->getChildrens())) {
+            $event_childrens = [];
+            foreach ($this->getChildrens() as $event) {
+                $event_childrens[] = $event->getTitle();
+            }
+            $doc->event_childrens = $event_childrens;
         }
-
-
-        $doc->participants = $participants;
-        $doc->event_groups = $event_groups;
-        $doc->event_childrens = $event_childrens;
 
         return $doc;
     }
@@ -229,7 +233,7 @@ class Event
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -252,7 +256,7 @@ class Event
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -275,7 +279,7 @@ class Event
     /**
      * Get createdDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedDate()
     {
@@ -298,7 +302,7 @@ class Event
     /**
      * Get modifiedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedDate()
     {
@@ -331,13 +335,12 @@ class Event
     /**
      * Get persons
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPersons()
     {
         return $this->persons;
     }
-    
 
 
     /**
@@ -356,7 +359,7 @@ class Event
     /**
      * Get start
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStart()
     {
@@ -379,7 +382,7 @@ class Event
     /**
      * Get end
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEnd()
     {
@@ -414,7 +417,7 @@ class Event
     /**
      * Get childrens
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildrens()
     {
@@ -437,13 +440,12 @@ class Event
     /**
      * Get parent
      *
-     * @return \iahm\ContactBundle\Entity\Event 
+     * @return \iahm\ContactBundle\Entity\Event
      */
     public function getParent()
     {
         return $this->parent;
     }
-
 
 
     /**
@@ -459,7 +461,7 @@ class Event
     /**
      * Get groups
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGroups()
     {
